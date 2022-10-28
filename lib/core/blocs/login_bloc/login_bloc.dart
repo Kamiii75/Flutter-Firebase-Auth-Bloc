@@ -16,6 +16,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({required UserRepository userRepository})
       : _userRepository = userRepository,
         super(LoginState.initial()) {
+
+
     on<LoginEmailChange>((event, emit) {
       state.update(isEmailValid: Validators.isEmailValid(event.email));
     });
@@ -27,7 +29,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       try {
         await _userRepository.signInWithCredentials(
             event.email, event.password);
-        LoginState.sucess();
+        LoginState.success();
       } catch (_) {
         LoginState.failure();
       }

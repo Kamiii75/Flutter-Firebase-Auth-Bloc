@@ -1,5 +1,6 @@
 import 'package:firebase_auth_bloc/core/blocs/auth_bloc/auth_bloc.dart';
 import 'package:firebase_auth_bloc/core/blocs/login_bloc/login_bloc.dart';
+import 'package:firebase_auth_bloc/core/blocs/signup_bloc/signup_bloc.dart';
 import 'package:firebase_auth_bloc/core/blocs/simpleBlocObserver.dart';
 import 'package:firebase_auth_bloc/core/repositories/user_repository.dart';
 import 'package:firebase_auth_bloc/ui/screens/authentication/authenticate.dart';
@@ -45,6 +46,10 @@ class MyApp extends StatelessWidget {
           BlocProvider<LoginBloc>(
             create: (BuildContext context) =>
                 LoginBloc(userRepository: _userRepository),
+          ),
+          BlocProvider<SignupBloc>(
+            create: (BuildContext context) =>
+                SignupBloc(userRepository: _userRepository),
           ),
         ],
         child: MultiProvider(

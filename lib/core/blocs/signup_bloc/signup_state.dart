@@ -1,6 +1,6 @@
-part of 'login_bloc.dart';
+part of 'signup_bloc.dart';
 
-class LoginState extends Equatable {
+ class SignupState extends Equatable {
   final bool isEmailValid;
   final bool isPasswordValid;
   final bool isSubmitting;
@@ -9,7 +9,7 @@ class LoginState extends Equatable {
 
   bool get isFormValid => isEmailValid && isPasswordValid;
 
-  const LoginState({
+  const SignupState({
     required this.isEmailValid,
     required this.isPasswordValid,
     required this.isSubmitting,
@@ -17,8 +17,8 @@ class LoginState extends Equatable {
     required this.isFailure,
   });
 
-  factory LoginState.initial() {
-    return const LoginState(
+  factory SignupState.initial() {
+    return const SignupState(
       isEmailValid: true,
       isPasswordValid: true,
       isSubmitting: false,
@@ -27,8 +27,8 @@ class LoginState extends Equatable {
     );
   }
 
-  factory LoginState.loading() {
-    return const LoginState(
+  factory SignupState.loading() {
+    return const SignupState(
       isEmailValid: true,
       isPasswordValid: true,
       isSubmitting: true,
@@ -37,8 +37,8 @@ class LoginState extends Equatable {
     );
   }
 
-  factory LoginState.failure() {
-    return const LoginState(
+  factory SignupState.failure() {
+    return const SignupState(
       isEmailValid: true,
       isPasswordValid: true,
       isSubmitting: false,
@@ -47,8 +47,8 @@ class LoginState extends Equatable {
     );
   }
 
-  factory LoginState.success() {
-    return const LoginState(
+  factory SignupState.success() {
+    return const SignupState(
       isEmailValid: true,
       isPasswordValid: true,
       isSubmitting: false,
@@ -57,7 +57,7 @@ class LoginState extends Equatable {
     );
   }
 
-  LoginState update(
+  SignupState update(
       { bool? isEmailValid,  bool? isPasswordValid}) {
     return copyWith(
         isEmailValid: isEmailValid ?? this.isEmailValid,
@@ -67,14 +67,14 @@ class LoginState extends Equatable {
         isFailure:  false);
   }
 
-  LoginState copyWith({
-     bool? isEmailValid,
-     bool? isPasswordValid,
-     bool? isSubmitting,
-     bool? isSucess,
-     bool? isFailure,
+  SignupState copyWith({
+    bool? isEmailValid,
+    bool? isPasswordValid,
+    bool? isSubmitting,
+    bool? isSucess,
+    bool? isFailure,
   }) {
-    return LoginState(
+    return SignupState(
         isEmailValid: isEmailValid ?? this.isEmailValid,
         isPasswordValid: isPasswordValid ?? this.isPasswordValid,
         isSubmitting: isSubmitting ?? this.isSubmitting,
@@ -85,4 +85,5 @@ class LoginState extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
+
 }

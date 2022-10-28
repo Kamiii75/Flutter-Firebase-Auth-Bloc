@@ -1,6 +1,15 @@
+import 'package:firebase_auth_bloc/core/blocs/login_bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
-class SignInProvider extends ChangeNotifier{
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+
+
+class SignInProvider extends ChangeNotifier{
+  BuildContext context;
+  SignInProvider({required this.context}){
+    _emailController.addListener(onEmailChange);
+    _passController.addListener(onPassChange);
+  }
 
 
 
@@ -17,6 +26,8 @@ class SignInProvider extends ChangeNotifier{
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
+
+
 
   TextEditingController get emailController=>_emailController;
   TextEditingController get passController=>_passController;
@@ -39,6 +50,22 @@ class SignInProvider extends ChangeNotifier{
   }
 
 
+  onEmailChange(){
+    context.read<LoginBloc>().add(LoginEmailChange(email: _emailController.text));
+
+  }
+  onPassChange(){
+    context.read<LoginBloc>().add(LoginPasswordChange(password: _passController.text));
+
+  }
+onSubmit(){
+
+  context.read<LoginBloc>().add(LoginWithCredentials(email: _emailController.text,password: _passController.text));
+}
 
 
+  clearAll(){
+    _emailController.dispose();
+    _passController.dispose();
+  }
 }
